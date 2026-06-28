@@ -1,0 +1,61 @@
+site_name: Intro to RL Course (Fall Guys)
+site_url: https://sitename.example
+theme:
+  name: material
+  font:
+    text: Montserrat
+    code: Roboto Mono
+  logo: assets/logo.png
+  favicon: assets/favicon.ico
+  palette:
+    # Dark Mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-7
+        name: Dark mode
+      primary: deep purple
+      accent: deep purple
+
+    # Light Mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-4
+        name: Light mode
+      primary: deep purple
+      accent: deep purple
+
+  features:
+    - navigation.expand
+    - toc.follow
+    - navigation.top
+
+extra_css:
+  - assets/custom.css
+
+nav:
+  - Welcome: index.md
+  - Introduction:
+    - Reinforcement Learning Theory: introduction/rl-theory.md
+    - ML Agent Theory: introduction/ml-agent-theory.md
+  - Installation:
+    - MacOS: installation/macos.md
+    - Windows: installation/windows.md
+    - Tensorboard: installation/tensorboard.md
+  - Levels:
+    - Level 0: levels/level-0.md
+    - Level 1: levels/level-1.md
+    - Level 2: levels/level-2.md
+    - Level 3: levels/level-3.md
+    - Level 4: levels/level-4.md
+    - Level 5: levels/level-5.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
