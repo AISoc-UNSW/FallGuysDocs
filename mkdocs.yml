@@ -46,8 +46,6 @@ nav:
     - Level 1: levels/level-1.md
     - Level 2: levels/level-2.md
     - Level 3: levels/level-3.md
-    - Level 4: levels/level-4.md
-    - Level 5: levels/level-5.md
 
 markdown_extensions:
   - pymdownx.highlight:
