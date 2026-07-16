@@ -114,6 +114,11 @@ This is worth doing at least once before a long training run — it's a fast way
 - **Kicks don't seem to move the ball as expected**: verify in heuristic/manual play mode first, since this isolates a physics/collision issue from a training issue.
 - For general TensorBoard reading (not self-play specific), see the [TensorBoard guide](../installation/tensorboard.md).
 
+## Screenshots & video
+
+!!! info "Media coming soon"
+    This section is a placeholder for gameplay screenshots and/or a short training video for Level 3. Contributions welcome — drop media in `docs/assets/` and link it here.
+
 ## See also
 
 - [README — Level 3](https://github.com/AISoc-UNSW/FallGuys#level-3)

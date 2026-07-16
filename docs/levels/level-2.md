@@ -85,6 +85,11 @@ As high as possible — ideally the agent consistently clears the later checkpoi
 - **Training is extremely slow to show any progress**: expected to some degree given `max_steps: 20000000`, but if mean reward is completely flat after a large fraction of training, revisit `time_horizon` and `buffer_size` before assuming it just needs more steps.
 - For general reward-curve reading and "agent isn't learning" diagnostics, see the [TensorBoard guide](../installation/tensorboard.md).
 
+## Screenshots & video
+
+!!! info "Media coming soon"
+    This section is a placeholder for gameplay screenshots and/or a short training video for Level 2. Contributions welcome — drop media in `docs/assets/` and link it here.
+
 ## See also
 
 - [README — Level 2](https://github.com/AISoc-UNSW/FallGuys#level-2) for the quick-start version of this page.
