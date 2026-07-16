@@ -1,0 +1,6 @@
+/* Larger logo in the header */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  width: 40px;
+  height: 40px;
+}

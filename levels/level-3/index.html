@@ -1,0 +1,1283 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sitename.example/levels/level-3/">
+      
+      
+        <link rel="prev" href="../level-2/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Level 3 - Intro to RL Course (Fall Guys)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Montserrat";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#level-3-self-play-soccer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Intro to RL Course (Fall Guys)" class="md-header__button md-logo" aria-label="Intro to RL Course (Fall Guys)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intro to RL Course (Fall Guys)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Level 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Intro to RL Course (Fall Guys)" class="md-nav__button md-logo" aria-label="Intro to RL Course (Fall Guys)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Intro to RL Course (Fall Guys)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/rl-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reinforcement Learning Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/ml-agent-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Agent Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/macos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MacOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/tensorboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tensorboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Levels
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment mechanics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observation-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observation space
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#action-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action space
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reward-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reward structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-play-configuration-level-3yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-play configuration (Level 3.yaml)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#training-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training scale
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-play-testing-heuristic-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual play-testing (Heuristic mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuning-and-stability-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tuning and stability notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-train" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to train
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#screenshots-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Screenshots &amp; video
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environment-mechanics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment mechanics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observation-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observation space
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#action-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action space
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reward-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reward structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self-play-configuration-level-3yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-play configuration (Level 3.yaml)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#training-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Training scale
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manual-play-testing-heuristic-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manual play-testing (Heuristic mode)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuning-and-stability-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tuning and stability notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-train" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to train
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#screenshots-video" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Screenshots &amp; video
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="level-3-self-play-soccer">Level 3 — Self-Play Soccer</h1>
+<p>A competitive 1v1 soccer environment where two Fall Guys train against each other via self-play.</p>
+<h2 id="overview">Overview</h2>
+<p>Level 3 is a genuinely different kind of problem from Levels 0–2: instead of a single agent solving a fixed environment, two Fall Guys (one per team) compete on a soccer field, and both are trained simultaneously via <strong>self-play</strong> — each agent's opponent is itself (or a recent snapshot of itself), rather than a hand-scripted AI. The objective is to move the ball into the opponent's goal while defending your own.</p>
+<p>This introduces concepts the earlier levels don't touch at all: competitive multi-agent training, opponent snapshotting, and ELO-based matchmaking to keep the difficulty of the opponent appropriately matched to the agent's current skill.</p>
+<h2 id="environment-mechanics">Environment mechanics</h2>
+<ul>
+<li><strong>Field, goals, ball</strong>: a standard soccer field with a goal at each end and a single ball.</li>
+<li><strong>Movement</strong>: WASD-style forward/back/left/right movement, inherited from earlier levels.</li>
+<li><strong>Jump and dive</strong>: both available, as in Levels 1/2 — diving in particular is used offensively here (see kick mechanics below).</li>
+<li><strong>Action masking</strong>: jump and dive are disabled in the action space (masked out) whenever the agent isn't in a state where they're usable — e.g. dive requires the agent be in a state where <code>CanDive</code> is true, and jump requires <code>CanJump</code>. This keeps the policy from wasting exploration on actions that can't do anything at a given moment.</li>
+<li><strong>Kicking</strong>: there's no explicit "kick" action — the ball is moved by physical contact. When the agent's controller collides with the ball, an impulse is applied to the ball in the direction from the agent to the ball, scaled by how fast the agent was moving (a stationary bump barely moves the ball; a running or diving hit sends it much further). Diving into the ball applies a stronger horizontal and vertical impulse than a standing kick.</li>
+</ul>
+<h2 id="observation-space">Observation space</h2>
+<p>20 observations per agent, all relative to the field and expressed as normalized/clamped values:</p>
+<table>
+<thead>
+<tr>
+<th>Observation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Self position (x, z)</td>
+<td>Own position relative to field center, normalized by field half-size</td>
+</tr>
+<tr>
+<td>Self velocity (x, z)</td>
+<td>Own horizontal velocity, normalized</td>
+</tr>
+<tr>
+<td>Self facing (x, z)</td>
+<td>Own forward direction</td>
+</tr>
+<tr>
+<td>Ball relative position (x, z)</td>
+<td>Ball position relative to self, normalized by field size</td>
+</tr>
+<tr>
+<td>Ball velocity (x, z)</td>
+<td>Ball velocity, normalized by max ball speed</td>
+</tr>
+<tr>
+<td>Opponent relative position (x, z)</td>
+<td>Opponent position relative to self</td>
+</tr>
+<tr>
+<td>Opponent velocity (x, z)</td>
+<td>Opponent velocity</td>
+</tr>
+<tr>
+<td>Own goal relative position (x, z)</td>
+<td>Own goal position relative to self</td>
+</tr>
+<tr>
+<td>Opponent goal relative position (x, z)</td>
+<td>Opponent's goal position relative to self</td>
+</tr>
+<tr>
+<td>Ball progress toward opponent goal</td>
+<td>Scalar, 0–1, how far the ball currently is along the own-goal→opponent-goal axis</td>
+</tr>
+<tr>
+<td>Grounded state</td>
+<td>Whether the agent is currently on the ground</td>
+</tr>
+</tbody>
+</table>
+<p>Everything is framed relative to the agent itself (rather than absolute field coordinates), which is what lets the same policy generalize regardless of which side of the field the agent currently defends.</p>
+<h2 id="action-space">Action space</h2>
+<p>6 discrete actions, all binary:</p>
+<ul>
+<li>Forward / back / left / right (movement)</li>
+<li>Jump</li>
+<li>Dive</li>
+</ul>
+<p>Jump and dive are masked out (disabled) when unusable, rather than simply having no effect — this is a meaningfully different design choice from Level 1/2, where those actions were always available.</p>
+<h2 id="reward-structure">Reward structure</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Reward</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ball progress toward opponent's goal (per step)</td>
+<td>Small positive shaping reward, proportional to progress gained</td>
+</tr>
+<tr>
+<td>Closing distance to the ball (per step)</td>
+<td>Small positive shaping reward, clamped to avoid large spikes</td>
+</tr>
+<tr>
+<td>Every step</td>
+<td>Small negative per-step penalty</td>
+</tr>
+<tr>
+<td>Attempting a dive</td>
+<td>Small negative cost</td>
+</tr>
+<tr>
+<td>Making contact with the ball (kicking it)</td>
+<td>Flat positive bonus</td>
+</tr>
+</tbody>
+</table>
+<p>This is a shaped-reward design layered on top of what's ultimately a sparse win/loss competitive signal — the shaping (ball progress, closing distance, kick bonus) exists to give the agent <em>something</em> to learn from early in training, before it's good enough to reliably score goals. The per-step penalty and dive cost exist to discourage passive play and dive-spamming respectively.</p>
+<h2 id="self-play-configuration-level-3yaml">Self-play configuration (<code>Level 3.yaml</code>)</h2>
+<p>Level 3 is the only level with a <code>self_play</code> block, which controls how each agent's opponent is selected during training:</p>
+<ul>
+<li><code>save_steps: 50000</code> — how often a snapshot of the current policy is saved into the opponent pool.</li>
+<li><code>team_change: 200000</code> — how often the two teams effectively swap which snapshot pool they're being trained against.</li>
+<li><code>swap_steps: 2000</code> — how often, within a training window, the opponent is swapped to a different snapshot.</li>
+<li><code>window: 10</code> — the size of the snapshot pool the training process samples opponents from (keeps a rolling set of recent policy versions, not just the single latest one).</li>
+<li><code>play_against_latest_model_ratio: 0.5</code> — the probability of facing the most recent policy snapshot vs. an older one from the pool. A 50/50 split balances "training against something current" against "not overfitting to only ever seeing the latest version of yourself."</li>
+<li><code>initial_elo: 1200</code> — starting ELO rating for matchmaking; ELO is tracked and updated as agents play against each other, which is what lets the training process (and you, when monitoring) gauge whether the policy is actually improving in a relative sense, since there's no fixed opponent to measure absolute performance against.</li>
+</ul>
+<h2 id="training-scale">Training scale</h2>
+<ul>
+<li><code>trainer_type: ppo</code>, <code>time_horizon: 512</code>, <code>gamma: 0.995</code> — long horizon and high discount, similar reasoning to Level 2: individual actions (a well-timed intercept, a good kick) may not pay off in reward for several steps.</li>
+<li><code>max_steps: 20000000</code> — same order of magnitude as Level 2. Self-play training is generally slower to show clear improvement than single-agent training, since the "difficulty" of the environment (the opponent) is a moving target that improves alongside the agent.</li>
+</ul>
+<h2 id="manual-play-testing-heuristic-mode">Manual play-testing (Heuristic mode)</h2>
+<p>The agent supports a heuristic mode that lets two humans play against each other on one keyboard — useful for sanity-checking the physics and reward wiring before committing to a real training run:</p>
+<ul>
+<li><strong>Team 0</strong>: WASD to move, Space to jump, Left Ctrl to dive.</li>
+<li><strong>Team 1</strong>: Arrow keys to move, Enter to jump, Right Shift to dive.</li>
+</ul>
+<p>This is worth doing at least once before a long training run — it's a fast way to confirm kicking, goal detection, and controls all behave as expected without waiting on a training curve to tell you something's wrong.</p>
+<h2 id="tuning-and-stability-notes">Tuning and stability notes</h2>
+<ul>
+<li><strong>Watch ELO trend, not a fixed reward target.</strong> Unlike Levels 0–2, there's no single number to aim for here — "success" is a policy whose ELO keeps climbing and that reliably out-competes older snapshots of itself, not a fixed mean-reward threshold.</li>
+<li><strong>Policy collapse / cycling</strong> is the most common self-play failure mode: an agent can get temporarily very good at beating whatever it's currently facing without making general progress, then get exploited once the opponent pool rotates. If ELO oscillates without a clear upward trend over a long window, this is the most likely cause — consider whether <code>window</code> and <code>play_against_latest_model_ratio</code> need adjusting to give the agent a more diverse, less exploitable set of opponents.</li>
+<li><strong>If goals essentially never happen</strong>, check the shaped rewards (ball progress, distance-closing, kick bonus) are actually firing in TensorBoard before assuming the policy itself is bad — a reward-wiring bug (e.g. a goal trigger not firing) looks identical to "the agent hasn't learned to score" from the mean-reward curve alone.</li>
+</ul>
+<h2 id="how-to-train">How to train</h2>
+<ol>
+<li>Open <code>Levels/Level 3/Level 3 Unity</code> in Unity.</li>
+<li>Open the scene: <code>Assets/Environment.unity</code>.</li>
+<li>Review the <code>self_play</code> block and PPO hyperparameters in <code>Level 3.yaml</code>.</li>
+<li>Run the backend:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mlagents-learn<span class="w"> </span><span class="s2">&quot;Levels/Level 3/Level 3.yaml&quot;</span><span class="w"> </span>--run-id<span class="o">=</span>run-1
+</span></code></pre></div></li>
+<li>Click Play in Unity.</li>
+<li>Watch ELO and mean reward in TensorBoard — ELO trend is the more meaningful signal here.</li>
+<li>Repeat steps 3–6, iterating on the self-play and PPO config. Change <code>--run-id</code> for a fresh run, or use <code>--resume</code> to continue one.</li>
+<li>Copy the trained model from <code>results</code> into the Assets folder in Unity.</li>
+<li>Assign the model in Behaviour Parameters for both teams to run in inference without the backend.</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><strong>Agent never attempts to approach the ball</strong>: check the ball-progress and distance-closing shaping rewards are non-zero early in training — if these aren't firing, the agent has no early signal to learn from.</li>
+<li><strong>ELO flat or oscillating with no clear trend</strong>: likely policy cycling — see the stability notes above.</li>
+<li><strong>Kicks don't seem to move the ball as expected</strong>: verify in heuristic/manual play mode first, since this isolates a physics/collision issue from a training issue.</li>
+<li>For general TensorBoard reading (not self-play specific), see the <a href="../../installation/tensorboard/">TensorBoard guide</a>.</li>
+</ul>
+<h2 id="screenshots-video">Screenshots &amp; video</h2>
+<div class="admonition info">
+<p class="admonition-title">Media coming soon</p>
+<p>This section is a placeholder for gameplay screenshots and/or a short training video for Level 3. Contributions welcome — drop media in <code>docs/assets/</code> and link it here.</p>
+</div>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="https://github.com/AISoc-UNSW/FallGuys#level-3">README — Level 3</a></li>
+<li><a href="../../installation/tensorboard/">TensorBoard guide</a></li>
+<li><a href="../../introduction/ml-agent-theory/">ML Agent Theory</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

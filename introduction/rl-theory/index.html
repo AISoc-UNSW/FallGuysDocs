@@ -1,0 +1,1252 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sitename.example/introduction/rl-theory/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../ml-agent-theory/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Reinforcement Learning Theory - Intro to RL Course (Fall Guys)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Montserrat";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#reinforcement-learning-theory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Intro to RL Course (Fall Guys)" class="md-header__button md-logo" aria-label="Intro to RL Course (Fall Guys)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intro to RL Course (Fall Guys)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reinforcement Learning Theory
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Intro to RL Course (Fall Guys)" class="md-nav__button md-logo" aria-label="Intro to RL Course (Fall Guys)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Intro to RL Course (Fall Guys)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reinforcement Learning Theory
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reinforcement Learning Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-rl-loop-mdps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The RL Loop &amp; MDPs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#return-policy-and-the-value-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return, Policy, and the Value Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rl-vs-supervised-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL vs. Supervised Learning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-algorithms-reinforce-to-ppo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Algorithms: REINFORCE to PPO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Design?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml-agent-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Agent Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/macos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MacOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/tensorboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tensorboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Levels
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/level-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/level-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/level-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/level-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-rl-loop-mdps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The RL Loop &amp; MDPs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#return-policy-and-the-value-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Return, Policy, and the Value Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rl-vs-supervised-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL vs. Supervised Learning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-algorithms-reinforce-to-ppo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning Algorithms: REINFORCE to PPO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Design?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="reinforcement-learning-theory">Reinforcement Learning Theory</h1>
+<p>Reinforcement learning (RL) is a machine learning paradigm where an agent learns entirely through experience — no labels, no correct answers handed to it upfront. This page builds up the theory from the core loop to the algorithm (PPO) that actually trains our Fall Guys.</p>
+<details class="tip">
+<summary>Watch this first (optional, 90 minutes)</summary>
+<p>This video is one of the fastest, most complete overviews of reinforcement learning available. It covers everything from the basic loop through MDPs, value functions, policy gradients, and PPO.</p>
+<p><div class="video-embed" markdown>
+<iframe width="100%" style="aspect-ratio:16/9;border:none;border-radius:8px;" src="https://www.youtube.com/embed/VnpRp7ZglfA" title="The FASTEST introduction to Reinforcement Learning on the internet — Gonkee" loading="lazy" allowfullscreen></iframe>
+</div></p>
+<p><strong>Recommended timestamps:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Timestamp</th>
+<th>Section</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://youtu.be/VnpRp7ZglfA?t=267">4:27</a></td>
+<td>Markov Decision Processes</td>
+</tr>
+<tr>
+<td><a href="https://youtu.be/VnpRp7ZglfA?t=997">16:37</a></td>
+<td>Grid Example + Monte Carlo</td>
+</tr>
+<tr>
+<td><a href="https://youtu.be/VnpRp7ZglfA?t=2182">36:22</a></td>
+<td>Temporal Difference</td>
+</tr>
+<tr>
+<td><a href="https://youtu.be/VnpRp7ZglfA?t=3054">50:54</a></td>
+<td>Deep Q-Networks</td>
+</tr>
+<tr>
+<td><a href="https://youtu.be/VnpRp7ZglfA?t=3525">58:45</a></td>
+<td>Policy Gradients (REINFORCE → PPO)</td>
+</tr>
+<tr>
+<td><a href="https://youtu.be/VnpRp7ZglfA?t=4824">1:20:24</a></td>
+<td>Limitations &amp; Future Directions</td>
+</tr>
+</tbody>
+</table>
+<p>If you're short on time, watch <strong>4:27 → ~35:00</strong> (MDPs and the core loop) and <strong>58:45 → end of that chapter</strong> (policy gradients). That's the mathematical foundation of everything we're doing.</p>
+</details>
+<h2 id="the-rl-loop-mdps">The RL Loop &amp; MDPs</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Just the Basics</label><label for="__tabbed_1_2">Good Understanding</label><label for="__tabbed_1_3">Deep Knowledge</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The entire mechanism is a loop:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Observe state → Choose action → Receive reward → Observe new state → repeat
+</span></code></pre></div>
+<p>This loop runs thousands of times across many episodes. That's it — that's RL. Everything else is details about how to make it work efficiently.</p>
+<p><strong>Concretely, for a Fall Guy:</strong></p>
+<ul>
+<li><strong>State / Observation</strong> — sensor readings: ray-perception distances to walls, goals, hazards, and empty space, plus whatever other observations a level defines (positions, velocities, angles). The Fall Guy can't see the scene directly; it only knows what its sensors detect.</li>
+<li><strong>Action</strong> — a movement equivalent to WASD, plus jump/dive depending on the level.</li>
+<li><strong>Reward</strong> — a number computed by the Unity scene, defined per level (e.g. positive for progress, negative for hitting a wall or falling).</li>
+<li><strong>Episode</strong> — ends when the agent reaches a goal, fails (falls, dies), or a timer runs out.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">State vs. Observation</p>
+<p>In RL literature, "state" means the full description of the world. "Observation" means what the agent <em>actually perceives</em>, which is often a partial view. In ML-Agents, what the agent receives is always an observation — the true full state of the Unity scene is never handed to it directly.</p>
+</div>
+<p>The agent-environment loop has a formal name: a <strong>Markov Decision Process (MDP)</strong>, defined by four things:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Symbol</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>States</td>
+<td><strong>S</strong></td>
+<td>Every possible observation the agent could receive</td>
+</tr>
+<tr>
+<td>Actions</td>
+<td><strong>A</strong></td>
+<td>Every move the agent is allowed to make</td>
+</tr>
+<tr>
+<td>Reward function</td>
+<td><strong>R</strong></td>
+<td>The rule that scores each (state, action) pair</td>
+</tr>
+<tr>
+<td>Transition</td>
+<td><strong>P</strong></td>
+<td>How the world changes given a state and action</td>
+</tr>
+</tbody>
+</table>
+<p>The critical assumption is the <strong>Markov property</strong>: <em>the future depends only on the current state, not on the history of how you got there.</em> For the Fall Guy, whatever its sensors show right now is sufficient to decide the next move — it doesn't need to remember its entire trajectory. This property is what makes the maths tractable; without it, the agent would need to track its entire history, which is computationally infeasible.</p>
+</div>
+<div class="tabbed-block">
+<p>This section is foundational — the mechanics of <em>how</em> the policy actually improves from this loop are covered in <a href="#learning-algorithms-reinforce-to-ppo">Learning Algorithms</a> below.</p>
+</div>
+<div class="tabbed-block">
+<p>The Markov assumption is what makes the bootstrapped TD update in <a href="#learning-algorithms-reinforce-to-ppo">Learning Algorithms</a> valid — see that section's Deep Knowledge tab for the mechanics of temporal difference learning, which directly exploits this property.</p>
+</div>
+</div>
+</div>
+<h2 id="return-policy-and-the-value-function">Return, Policy, and the Value Function</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Just the Basics</label><label for="__tabbed_2_2">Good Understanding</label><label for="__tabbed_2_3">Deep Knowledge</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><strong>Return.</strong> If the agent only optimised the <em>immediate</em> reward, it would behave short-sightedly. Instead, we define the <strong>return</strong> as the weighted sum of all future rewards:</p>
+<p>$$G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \gamma^3 r_{t+3} + \ldots$$</p>
+<p>The <strong>discount factor γ (gamma)</strong>, between 0 and 1, controls the horizon:</p>
+<ul>
+<li><strong>Low γ (e.g. 0.5)</strong> → short-sighted, cares mainly about the next few steps</li>
+<li><strong>High γ (e.g. 0.99)</strong> → patient, willing to take a longer route for a bigger eventual payoff</li>
+</ul>
+<p>The agent's goal is to maximise <strong>expected return</strong>, not just the next reward — this is why it can learn strategies that involve short-term sacrifice.</p>
+<p><strong>Policy.</strong> The <strong>policy</strong> (π) is the agent's behaviour: a mapping from observations to actions. In our setup, the policy is a <strong>neural network</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[sensor observations...] → [neural network] → [probability distribution over actions]
+</span></code></pre></div>
+<ul>
+<li>At the <strong>start of training</strong>: weights are random, so the agent stumbles around with no useful strategy.</li>
+<li>During <strong>training</strong>: the network is updated so that actions that led to high returns become more probable.</li>
+<li>At <strong>deployment</strong>: the trained <code>.onnx</code> file is loaded in Unity and the agent runs inference without Python.</li>
+</ul>
+<p>"Training" literally means adjusting this network's weights. Nothing else about the policy changes — same architecture, same inputs, same output format. Only the numbers inside the network improve.</p>
+<p><strong>Value function.</strong> The <strong>value function</strong> V(s) answers a different question to the policy: <em>"If I'm in state s right now, how much total return should I expect from here onward?"</em> It doesn't pick actions, it scores positions. Near a goal → high value. Stuck against a wall with no clear path → low value.</p>
+<p>The value function is used as a <strong>baseline</strong> during training: instead of asking "was this action good?", we ask "was this action <em>better than what I expected</em>?" That difference — actual return minus expected return — is called the <strong>advantage</strong>. Both the policy network and the value network are trained simultaneously; this is the "actor-critic" architecture that PPO uses.</p>
+</div>
+<div class="tabbed-block">
+<p>See <a href="#learning-algorithms-reinforce-to-ppo">Learning Algorithms</a> below for how return, policy, and value function combine into PPO's actual training update (the advantage is what PPO trains on).</p>
+</div>
+<div class="tabbed-block">
+<p>See <a href="#learning-algorithms-reinforce-to-ppo">Learning Algorithms</a>'s Deep Knowledge tab for how the value function is updated via temporal difference learning, and <a href="#why-this-design">Why This Design?</a> for the neuroscience connection between the value function's TD error and dopamine signalling.</p>
+</div>
+</div>
+</div>
+<h2 id="rl-vs-supervised-learning">RL vs. Supervised Learning</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Just the Basics</label><label for="__tabbed_3_2">Good Understanding</label><label for="__tabbed_3_3">Deep Knowledge</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>It's worth being explicit about why RL is different from ordinary supervised learning, because the differences explain why training can be slow and unstable.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Supervised Learning</th>
+<th>Reinforcement Learning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data source</strong></td>
+<td>Fixed, labelled dataset</td>
+<td>Generated live by the agent acting</td>
+</tr>
+<tr>
+<td><strong>Signal</strong></td>
+<td>Correct label per example</td>
+<td>Reward per transition (not "correct action")</td>
+</tr>
+<tr>
+<td><strong>Independence</strong></td>
+<td>Each example is i.i.d.</td>
+<td>Actions affect future states, not i.i.d.</td>
+</tr>
+<tr>
+<td><strong>Goal</strong></td>
+<td>Generalise from training data</td>
+<td>Maximise return through trial and error</td>
+</tr>
+<tr>
+<td><strong>Stability</strong></td>
+<td>Generally stable</td>
+<td>Can be noisy, slow, unstable</td>
+</tr>
+</tbody>
+</table>
+<p>The non-i.i.d. nature of RL data is particularly important: a bad action now changes what the agent sees next, which changes what it learns from next. Errors compound in ways they don't in supervised learning.</p>
+</div>
+<div class="tabbed-block">
+<p>No additional depth needed here — this comparison is foundational context, not something that gets more technical at a deeper tier.</p>
+</div>
+<div class="tabbed-block">
+<p>No additional depth needed here.</p>
+</div>
+</div>
+</div>
+<h2 id="learning-algorithms-reinforce-to-ppo">Learning Algorithms: REINFORCE to PPO</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Just the Basics</label><label for="__tabbed_4_2">Good Understanding</label><label for="__tabbed_4_3">Deep Knowledge</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The network gets better by playing episodes and reinforcing whatever actions led to good outcomes: actions that led to high return get pushed to be more probable, actions that led to low return get pushed to be less probable. The simplest version of this idea is called <strong>REINFORCE</strong>; <strong>PPO</strong> (Proximal Policy Optimization) is a more robust, practical version of the same idea, and it's the algorithm ML-Agents uses by default.</p>
+</div>
+<div class="tabbed-block">
+<p><strong>REINFORCE — where the loss comes from.</strong> REINFORCE is the simplest policy gradient algorithm, and understanding it explains where the "loss function" in RL even comes from — because unlike supervised learning, it's not obvious.</p>
+<ol>
+<li><strong>Play an episode</strong> — run the current policy, recording every (state, action, reward) tuple.</li>
+<li><strong>Compute returns</strong> — for each action taken, calculate the discounted return that followed it.</li>
+<li><strong>Weight by return</strong> — if the return was high, the gradient update should push <em>that action's probability up</em>; if low, push it down.</li>
+<li><strong>Gradient step</strong> — backpropagate through the network exactly like supervised learning, but the "target signal" comes from the return, not a label.</li>
+</ol>
+<p>The loss is constructed as:</p>
+<p>$$\mathcal{L} = -\log \pi(a | s) \cdot G_t$$</p>
+<p>The network's log-probability of the action it took, multiplied by the return that followed. Minimising this loss pushes the network to assign higher probability to high-return actions — no labels, the correctness signal is just whatever return actually happened. This makes REINFORCE a <strong>policy gradient method</strong>: we're taking a gradient step directly on the policy, not on a value function.</p>
+<p><strong>PPO vs. REINFORCE.</strong> REINFORCE works in principle but is too unstable for harder tasks. PPO fixes the key practical problems:</p>
+<table>
+<thead>
+<tr>
+<th>Problem with REINFORCE</th>
+<th>PPO's fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Must wait for a full episode before any update</td>
+<td>Uses short <strong>rollouts</strong> (<code>time_horizon</code>), not full episodes</td>
+</tr>
+<tr>
+<td>Raw returns are very noisy</td>
+<td>Uses the <strong>value function as a baseline</strong> (advantage instead of raw return)</td>
+</tr>
+<tr>
+<td>One lucky/unlucky episode can cause a huge, destabilising update</td>
+<td><strong>Clips the update</strong> (<code>epsilon</code>) — policy can't change too much in one step</td>
+</tr>
+<tr>
+<td>Each batch used for exactly one gradient step</td>
+<td><strong>Reuses</strong> each buffer for <code>num_epoch</code> passes — more efficient</td>
+</tr>
+</tbody>
+</table>
+<p>"Proximal" means "nearby/close to" — the new policy stays close to the old one, and the clip is the mechanism that enforces this. This is why PPO is the default trainer in ML-Agents: it's REINFORCE, made robust enough to work on real environments.</p>
+<p><strong>On-policy vs. off-policy.</strong> This is a fundamental axis RL algorithms sit on. <strong>On-policy</strong> (REINFORCE, PPO): you can only learn from data collected by the <em>current</em> policy — the moment the policy updates, old data is stale and gets discarded. <strong>Off-policy</strong> (DQN, SAC): you store experiences in a <strong>replay buffer</strong> and can reuse them across many updates, even if they were collected by an older policy — more sample-efficient, but updates can be less stable. PPO is on-policy: every time the policy updates, the previous rollout data is gone. ML-Agents also supports SAC (off-policy, <code>trainer_type: sac</code>) but PPO is the default.</p>
+<p><strong>The full training loop, end to end:</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌─────────────────────────────────────────────────────────────┐
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│  1. INITIALISE — network weights are random                 │
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│                                                             │
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│  2. COLLECT ROLLOUT                                         │
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│     Unity runs the current policy until buffer_size         │
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│     experiences are gathered                                │
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│                                                             │
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│  3. COMPUTE ADVANTAGE                                       │
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│     Python: for each step, actual return minus              │
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│     value function estimate (GAE, controlled by lambda)     │
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│                                                             │
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│  4. UPDATE NETWORKS                                         │
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│     Python: num_epoch passes of gradient descent            │
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│     over buffer in batch_size chunks, clipped by epsilon    │
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│                                                             │
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│  5. DISCARD (on-policy!) → go back to 2                     │
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│                                                             │
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│  6. REPEAT until max_steps or target reward                 │
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>└─────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<p>Steps 2–5 repeat continuously. Steps 2 and 3 happen in Unity and Python respectively; step 4 is entirely Python. The connection between them is a live gRPC socket (see <a href="../ml-agent-theory/#two-programs-one-training-run">Two Programs, One Training Run</a>).</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Temporal difference (TD) learning</strong> is how the value function gets updated without waiting for the end of an episode. Instead of using the true return (which requires seeing the whole future), it uses a <strong>bootstrapped estimate</strong>:</p>
+<p>$$V(s_t) \leftarrow V(s_t) + \alpha [r_{t+1} + \gamma V(s_{t+1}) - V(s_t)]$$</p>
+<p>The term in brackets — actual reward plus discounted next-value minus current-value estimate — is the TD error, and it's also closely related to the advantage in PPO. λ (lambda) in your yaml controls how far this bootstrapping looks ahead via Generalised Advantage Estimation (GAE).</p>
+<p><strong>Monte Carlo vs. TD.</strong> Monte Carlo methods wait for the end of the episode and use the true return — unbiased but high-variance. TD methods use bootstrapped estimates — biased, but lower variance, and they can update online without waiting for episode completion. PPO uses a TD-based advantage estimate, not Monte Carlo.</p>
+</div>
+</div>
+</div>
+<h2 id="why-this-design">Why This Design?</h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Just the Basics</label><label for="__tabbed_5_2">Good Understanding</label><label for="__tabbed_5_3">Deep Knowledge</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>This section is deeper background on <em>why</em> we use these specific methods — not required to get training working, but useful context if you're curious.</p>
+</div>
+<div class="tabbed-block">
+<p>See the Deep Knowledge tab for the full rationale — it's more theory-heavy than the "Good Understanding" tier elsewhere on this page, so it's kept together rather than split.</p>
+</div>
+<div class="tabbed-block">
+<p><strong>Why policy-based methods for this project?</strong> There's a whole other family of RL algorithms — <strong>value-based methods</strong> like DQN — that never directly learn a policy. They learn a Q-function (Q(s, a) = expected return of taking action a in state s) and derive actions by taking the max. We use <strong>policy-based methods (PPO)</strong> for a few specific reasons:</p>
+<ul>
+<li><strong>Action space</strong>: our actions behave like continuous control (combined movement directions, not a small fixed menu). Policy methods naturally output a probability distribution; value methods need to take a discrete max over all actions, which becomes awkward with continuous or large action spaces.</li>
+<li><strong>Direct optimisation</strong>: policy gradient methods improve the behaviour itself, step by step. Value methods improve the Q-function and hope the right behaviour falls out indirectly.</li>
+<li><strong>Smoother updates</strong>: because the policy is a smooth probability distribution, small parameter changes produce small behaviour changes — important for a physical walking agent where erratic jumps in behaviour are costly.</li>
+</ul>
+<p><strong>Neuroscience connection.</strong> The temporal difference error has a fascinating neuroscience connection: it closely mirrors the behaviour of <strong>dopamine neurons</strong> in primate brains during reward learning experiments (covered at <a href="https://youtu.be/VnpRp7ZglfA?t=4326">1:12:06</a> in the video above if you're interested). It's a compelling argument that RL might actually describe how biological agents learn.</p>
+</div>
+</div>
+</div>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../ml-agent-theory/">ML Agent Theory</a> — how this theory maps onto the actual Unity + Python setup</li>
+<li><a href="../../levels/level-1/">Level docs</a> — see these concepts applied to specific training runs</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

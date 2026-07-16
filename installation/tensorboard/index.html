@@ -1,0 +1,1378 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://sitename.example/installation/tensorboard/">
+      
+      
+        <link rel="prev" href="../windows/">
+      
+      
+        <link rel="next" href="../../levels/level-0/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Tensorboard - Intro to RL Course (Fall Guys)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Montserrat";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tensorboard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Intro to RL Course (Fall Guys)" class="md-header__button md-logo" aria-label="Intro to RL Course (Fall Guys)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Intro to RL Course (Fall Guys)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tensorboard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Intro to RL Course (Fall Guys)" class="md-nav__button md-logo" aria-label="Intro to RL Course (Fall Guys)" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Intro to RL Course (Fall Guys)
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/rl-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reinforcement Learning Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/ml-agent-theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ML Agent Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MacOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tensorboard
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tensorboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-tensorboard-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why TensorBoard matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-launch-tensorboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to launch TensorBoard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opening-the-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opening the dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-graphs-to-focus-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The graphs to focus on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-simple-way-to-read-tensorboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A simple way to read TensorBoard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-training-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common training patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-takeaway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main takeaway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-ml-agents-creates-tensorboard-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How ML-Agents creates TensorBoard logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run IDs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-tensorboard-support-for-a-new-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding TensorBoard support for a new level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-verify-before-merging-a-new-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to verify before merging a new level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributor-rule-of-thumb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributor rule of thumb
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Levels
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Levels
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/level-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/level-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/level-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../levels/level-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-tensorboard-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why TensorBoard matters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before you start
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-launch-tensorboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to launch TensorBoard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opening-the-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opening the dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-graphs-to-focus-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The graphs to focus on
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-simple-way-to-read-tensorboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A simple way to read TensorBoard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-training-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common training patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#main-takeaway" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main takeaway
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-ml-agents-creates-tensorboard-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How ML-Agents creates TensorBoard logs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YAML requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run IDs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-tensorboard-support-for-a-new-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding TensorBoard support for a new level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-to-verify-before-merging-a-new-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to verify before merging a new level
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contributor-rule-of-thumb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contributor rule of thumb
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tensorboard">Tensorboard</h1>
+<p>TensorBoard is a dashboard that shows training graphs. Instead of only watching the agent move in Unity, you can use it to understand whether the agent is actually learning.</p>
+<p>This page has two views: <strong>Student View</strong> covers how to launch TensorBoard and read the graphs while training. <strong>Developer View</strong> covers how TensorBoard support is wired up per level, for contributors adding a new level to the project.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Student View</label><label for="__tabbed_1_2">Developer View</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h3 id="why-tensorboard-matters">Why TensorBoard matters</h3>
+<p>In reinforcement learning, the agent improves through trial and error. Sometimes it looks like the agent is improving, but the training graphs tell a different story. TensorBoard helps you answer questions like:</p>
+<ul>
+<li>Is the agent getting better over time?</li>
+<li>Is the reward increasing?</li>
+<li>Is the agent stuck?</li>
+<li>Is the agent acting too randomly?</li>
+<li>Is training unstable?</li>
+<li>Is the agent exploiting the reward function in a strange way?</li>
+</ul>
+<p>For this course, TensorBoard is mainly a debugging and learning tool.</p>
+<h3 id="before-you-start">Before you start</h3>
+<p>Open a terminal in the repository root and activate the ML-Agents environment:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>mlagents
+</span></code></pre></div>
+<p>You do not need to manually install TensorBoard if the course environment is already set up correctly. If the script says TensorBoard is missing, run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>tensorboard
+</span></code></pre></div>
+<h3 id="how-to-launch-tensorboard">How to launch TensorBoard</h3>
+<p>Use two terminals: one runs ML-Agents training, the other runs TensorBoard.</p>
+<p><strong>Terminal 1</strong> (example for Level 0):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>mlagents
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>mlagents-learn<span class="w"> </span><span class="s2">&quot;Levels/Level 0/Level 0.yaml&quot;</span><span class="w"> </span>--run-id<span class="o">=</span>level0
+</span></code></pre></div>
+<p>When ML-Agents asks you to start training, press Play in Unity.</p>
+<p><strong>Terminal 2:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>mlagents
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>./scripts/tensorboard.sh<span class="w"> </span>level0
+</span></code></pre></div>
+<p>On Windows:</p>
+<div class="language-bat highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>conda activate mlagents
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>scripts\tensorboard.bat level0
+</span></code></pre></div>
+<p>The same pattern works for any level, e.g. <code>./scripts/tensorboard.sh level1</code>.</p>
+<h3 id="opening-the-dashboard">Opening the dashboard</h3>
+<p>After running the TensorBoard script, the terminal will print a URL similar to:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>http://localhost:6006
+</span></code></pre></div>
+<p>Open that URL in your browser. If port <code>6006</code> is already in use, the macOS/Linux script may choose another port such as <code>http://localhost:6007</code> — use the exact URL printed in your terminal.</p>
+<div class="admonition tip">
+<p class="admonition-title">Graphs not appearing immediately?</p>
+<p>This is normal. TensorBoard can be opened before training starts — it will begin showing graphs once ML-Agents creates training logs. In this project, ML-Agents writes TensorBoard summaries every <code>summary_freq</code> steps (10,000 by default), so wait until training has taken that many steps. You can either manually refresh, or click the gear icon (top right, not the settings one) and check "Reload Data".</p>
+</div>
+<h3 id="the-graphs-to-focus-on">The graphs to focus on</h3>
+<p>TensorBoard shows many graphs, but you don't need to understand all of them. Focus on these first:</p>
+<ol>
+<li><code>Environment/Cumulative Reward</code></li>
+<li><code>Environment/Episode Length</code></li>
+<li><code>Losses/Policy Loss</code></li>
+<li><code>Losses/Value Loss</code></li>
+<li><code>Policy/Entropy</code></li>
+<li><code>Policy/Learning Rate</code></li>
+</ol>
+<p><strong><code>Environment/Cumulative Reward</code></strong> — the most important graph. Shows how much reward the agent receives per episode; usually you want this to increase over time.</p>
+<ul>
+<li><strong>Goes up</strong> → the agent is probably learning, the reward function is giving useful feedback, observations/actions are likely connected correctly.</li>
+<li><strong>Stays flat</strong> → the agent may not understand what to do, rewards may be too rare, observations may be missing/incorrect, or the goal may be too hard to reach.</li>
+<li><strong>Jumps up and down wildly</strong> → training may be unstable, learning rate may be too high, the reward function may be easy to exploit, or the environment may be inconsistent.</li>
+</ul>
+<p><strong><code>Environment/Episode Length</code></strong> — how long an episode lasts before it ends. Longer is not always better: if the agent gets a longer episode by standing still and avoiding punishment, that's not good learning. Always compare episode length with cumulative reward and what you see in Unity.</p>
+<ul>
+<li><strong>Length and reward both increase</strong> → the agent may be surviving longer and performing better.</li>
+<li><strong>Length increases but reward stays flat</strong> → the agent may be wasting time; the reward function may not encourage progress strongly enough.</li>
+<li><strong>Length is very short</strong> → the agent may be failing quickly; the level may be too punishing at the start.</li>
+</ul>
+<p><strong><code>Losses/Policy Loss</code></strong> — how much the agent's decision-making policy is changing during training. Use it as a rough stability signal, not something to calculate yourself. Small changes and mild fluctuations are normal; large repeated spikes can mean training is unstable, the learning rate is too high, updates are too aggressive, or the reward signal is noisy. Policy loss doesn't need to smoothly decrease forever — RL graphs are often noisy.</p>
+<p><strong><code>Losses/Value Loss</code></strong> — how well the agent is predicting future reward. If it gradually becomes more stable, the agent is getting better at estimating which situations are useful. If it stays very high or spikes constantly, the agent may not understand which actions lead to reward, rewards may be too delayed/inconsistent, or the environment may be too difficult for the current setup.</p>
+<p><strong><code>Policy/Entropy</code></strong> — how random the agent's actions are. High = exploring many actions; low = becoming consistent and confident.</p>
+<ul>
+<li><strong>High at the start</strong> → normal, the agent is exploring.</li>
+<li><strong>Slowly decreases</strong> → usually good, moving from exploration toward a strategy.</li>
+<li><strong>Stays high too long</strong> → the agent may still be acting randomly; rewards may be too rare.</li>
+<li><strong>Drops very low too early</strong> → the agent may stop exploring before finding a good strategy, and get stuck repeating a weak behavior.</li>
+</ul>
+<p><strong><code>Policy/Learning Rate</code></strong> — controls how large the training updates are. In this project the schedule is linear, so it gradually decreases during training. Higher = faster but less stable changes; lower = slower but more stable. Useful for explaining why learning may slow down later in training.</p>
+<h3 id="a-simple-way-to-read-tensorboard">A simple way to read TensorBoard</h3>
+<ol>
+<li>Look at Cumulative Reward.</li>
+<li>Check Episode Length.</li>
+<li>Compare the graphs with what the agent is doing in Unity.</li>
+<li>Check Entropy to see whether the agent is still exploring.</li>
+<li>Check Policy Loss and Value Loss for instability.</li>
+</ol>
+<p>Don't judge training from one graph alone — e.g. if reward is increasing and the agent looks better in Unity, training is probably going well even if some loss graphs are noisy.</p>
+<h3 id="common-training-patterns">Common training patterns</h3>
+<p><strong>Good training</strong>: cumulative reward generally increases, episode length makes sense for the level's goal, entropy gradually decreases, policy/value loss don't spike constantly, the agent looks better in Unity.</p>
+<p><strong>Agent is not learning</strong>: cumulative reward stays flat, episode length doesn't improve, entropy stays high, the agent moves randomly in Unity. Check: is the reward clear? Can the agent reach the goal? Are observations/actions connected correctly? Is the level too difficult at the start?</p>
+<p><strong>Training is unstable</strong>: reward rises then suddenly drops, policy loss has large repeated spikes, value loss is very noisy, the agent changes behavior suddenly. Try: lower the learning rate, avoid changing too many hyperparameters at once, check whether the reward function can be exploited, make sure the agent isn't receiving conflicting rewards.</p>
+<p><strong>Agent finds a strange shortcut</strong>: sometimes the agent learns to get reward in a way that doesn't match the intended level goal (e.g. standing still if that avoids punishment). Watch the agent in Unity, compare with the reward graph, and change the reward function so it better matches the real goal.</p>
+<div class="admonition note">
+<p class="admonition-title">Extra graphs</p>
+<p>Depending on the ML-Agents version and training settings, TensorBoard may show extra graphs beyond the ones above. You don't need to focus on them at first — start with reward, episode length, entropy, policy loss, value loss, and learning rate. Once those make sense, extra graphs can be used for deeper debugging.</p>
+</div>
+<h3 id="quick-troubleshooting">Quick troubleshooting</h3>
+<p><strong>TensorBoard says command not found</strong> — activate the environment and install it:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>mlagents
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>pip<span class="w"> </span>install<span class="w"> </span>tensorboard
+</span></code></pre></div>
+<p><strong>TensorBoard opens but no graphs show</strong> — did you start training? Did you press Play in Unity? Are you using the correct level command? Has training reached at least <code>summary_freq</code> steps (10,000 by default)?</p>
+<p><strong>The wrong run is showing</strong> — make sure the run ID matches the level (<code>level0 -&gt; results/level0</code>, <code>level1 -&gt; results/level1</code>, etc.).</p>
+<p><strong>Port already in use</strong> — on macOS/Linux the script automatically tries the next available port; on Windows pass a different port manually: <code>scripts\tensorboard.bat level0 6007</code>.</p>
+<h3 id="main-takeaway">Main takeaway</h3>
+<p>TensorBoard helps you connect what the agent is doing in Unity with what's happening during training. If the agent looks better, the reward graph should usually support that. If the graph looks strange, check the reward function, observations, actions, level design, and hyperparameters.</p>
+</div>
+<div class="tabbed-block">
+<p>This view is for contributors adding TensorBoard support to a new Fall Guys RL level. TensorBoard support is already set up for Level 0 (<code>level0</code>) and Level 1 (<code>level1</code>) — students should not need to manually choose log folders; they run one small script from the repository root.</p>
+<h3 id="current-setup">Current setup</h3>
+<p>The TensorBoard launchers live in:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>scripts/
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>|-- tensorboard.sh
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>|-- tensorboard.bat
+</span></code></pre></div>
+<p>The scripts map a short level name to the correct ML-Agents results folder, e.g. <code>level0 -&gt; results/level0</code>. This means contributors can tell students to run <code>./scripts/tensorboard.sh level0</code> (or <code>scripts\tensorboard.bat level0</code> on Windows).</p>
+<h3 id="how-ml-agents-creates-tensorboard-logs">How ML-Agents creates TensorBoard logs</h3>
+<p>When training starts, ML-Agents writes training summaries into the run's results folder:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>results/
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>|-- level0/
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>|-- level1/
+</span></code></pre></div>
+<p>Each run folder contains the trained model, checkpoints, configuration, run logs, and TensorBoard event files. TensorBoard reads those event files and turns them into graphs.</p>
+<h3 id="yaml-requirements">YAML requirements</h3>
+<p>Each level's training config should include <code>summary_freq</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">summary_freq</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10000</span>
+</span></code></pre></div>
+<p>This tells ML-Agents how often to write TensorBoard summaries. If too high, students wait a long time before graphs appear; if too low, ML-Agents writes logs more often than necessary. <code>10000</code> is a good default for this course.</p>
+<h3 id="run-ids">Run IDs</h3>
+<p>The script expects training to use a run ID that matches the level name:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>mlagents-learn<span class="w"> </span><span class="s2">&quot;Levels/Level 0/Level 0.yaml&quot;</span><span class="w"> </span>--run-id<span class="o">=</span>level0
+</span></code></pre></div>
+<p><code>--run-id</code> controls where ML-Agents writes results (<code>--run-id=level0 -&gt; results/level0</code>). If the run ID doesn't match the script's mapping, TensorBoard may open but show no graphs.</p>
+<h3 id="adding-tensorboard-support-for-a-new-level">Adding TensorBoard support for a new level</h3>
+<p>Suppose a contributor adds Level 2:</p>
+<ol>
+<li><strong>Choose a simple level key</strong>, e.g. <code>level2</code>.</li>
+<li><strong>Train using that run ID</strong>: <code>mlagents-learn "Levels/Level 2/Level 2.yaml" --run-id=level2</code> — this creates <code>results/level2</code>.</li>
+<li><strong>Check the YAML config</strong> includes <code>summary_freq: 10000</code>.</li>
+<li><strong>Update the macOS/Linux script</strong> (<code>scripts/tensorboard.sh</code>) with a new mapping:
+   <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">elif</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LEVEL</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;level2&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="nv">LOGDIR</span><span class="o">=</span><span class="s2">&quot;results/level2&quot;</span>
+</span></code></pre></div>
+   Also update the usage text so contributors know the new level exists.</li>
+<li><strong>Update the Windows script</strong> (<code>scripts/tensorboard.bat</code>):
+   <div class="language-bat highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">) else if &quot;%LEVEL%&quot;==&quot;level2&quot; (</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="k">set</span> <span class="nv">LOGDIR</span><span class="p">=</span>results\level2
+</span></code></pre></div>
+   Also update the usage text.</li>
+<li><strong>Test the script</strong>: <code>./scripts/tensorboard.sh level2</code> (or <code>scripts\tensorboard.bat level2</code> on Windows) should print a local URL such as <code>http://localhost:6006</code>.</li>
+</ol>
+<h3 id="what-to-verify-before-merging-a-new-level">What to verify before merging a new level</h3>
+<ul>
+<li>The level YAML has <code>summary_freq: 10000</code>.</li>
+<li>The training command uses the same run ID as the TensorBoard script.</li>
+<li>The script maps the level key to the correct <code>results</code> folder.</li>
+<li>TensorBoard opens without extra setup after <code>conda activate mlagents</code>.</li>
+<li>The dashboard shows graphs after training starts.</li>
+<li>The student docs mention the new level key if students are expected to use it.</li>
+</ul>
+<h3 id="common-problems">Common problems</h3>
+<p><strong>TensorBoard opens but there are no graphs</strong> — training hasn't started yet, the run ID doesn't match the script's log directory, ML-Agents hasn't reached the next <code>summary_freq</code> step yet, or the wrong level key was passed to the script.</p>
+<p><strong>TensorBoard command not found</strong> — the environment probably doesn't have TensorBoard installed or activated:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>conda<span class="w"> </span>activate<span class="w"> </span>mlagents
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>pip<span class="w"> </span>install<span class="w"> </span>tensorboard
+</span></code></pre></div>
+<p><strong>Port 6006 already in use</strong> — the macOS/Linux script automatically checks for the next available port; on Windows pass a different port manually: <code>scripts\tensorboard.bat level0 6007</code>.</p>
+<h3 id="contributor-rule-of-thumb">Contributor rule of thumb</h3>
+<p>For every new level, keep the naming consistent: <code>level key = run ID = results folder</code> (e.g. <code>level2 -&gt; --run-id=level2 -&gt; results/level2</code>). This keeps TensorBoard easy for students to launch and easy for contributors to maintain.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.expand", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
