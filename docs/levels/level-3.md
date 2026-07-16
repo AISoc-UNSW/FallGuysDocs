@@ -2,9 +2,6 @@
 
 A competitive 1v1 soccer environment where two Fall Guys train against each other via self-play.
 
-!!! note "Not yet in the FallGuys README"
-    Level 3 was added most recently. See the [README's Level 3 section](https://github.com/AISoc-UNSW/FallGuys#level-3) for the quick-start version — this page goes deeper.
-
 ## Overview
 
 Level 3 is a genuinely different kind of problem from Levels 0–2: instead of a single agent solving a fixed environment, two Fall Guys (one per team) compete on a soccer field, and both are trained simultaneously via **self-play** — each agent's opponent is itself (or a recent snapshot of itself), rather than a hand-scripted AI. The objective is to move the ball into the opponent's goal while defending your own.
