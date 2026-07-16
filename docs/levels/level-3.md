@@ -2,9 +2,6 @@
 
 A competitive 1v1 soccer environment where two Fall Guys train against each other via self-play.
 
-!!! note "Not yet in the FallGuys README"
-    Level 3 was added most recently. See the [README's Level 3 section](https://github.com/AISoc-UNSW/FallGuys#level-3) for the quick-start version — this page goes deeper.
-
 ## Overview
 
 Level 3 is a genuinely different kind of problem from Levels 0–2: instead of a single agent solving a fixed environment, two Fall Guys (one per team) compete on a soccer field, and both are trained simultaneously via **self-play** — each agent's opponent is itself (or a recent snapshot of itself), rather than a hand-scripted AI. The objective is to move the ball into the opponent's goal while defending your own.
@@ -113,6 +110,11 @@ This is worth doing at least once before a long training run — it's a fast way
 - **ELO flat or oscillating with no clear trend**: likely policy cycling — see the stability notes above.
 - **Kicks don't seem to move the ball as expected**: verify in heuristic/manual play mode first, since this isolates a physics/collision issue from a training issue.
 - For general TensorBoard reading (not self-play specific), see the [TensorBoard guide](../installation/tensorboard.md).
+
+## Screenshots & video
+
+!!! info "Media coming soon"
+    This section is a placeholder for gameplay screenshots and/or a short training video for Level 3. Contributions welcome — drop media in `docs/assets/` and link it here.
 
 ## See also
 

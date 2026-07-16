@@ -78,6 +78,11 @@ A consistently high, positive mean reward — meaning the agent survives most of
 - **Agent survives briefly then plateaus**: often means it's learned to avoid one spinner but not react to the second — watch the two spinner angle observations against the agent's actual movement to sanity-check it's using both signals.
 - For general "my agent isn't learning" debugging (reward not increasing, high variance, etc.), see the [TensorBoard guide](../installation/tensorboard.md).
 
+## Screenshots & video
+
+!!! info "Media coming soon"
+    This section is a placeholder for gameplay screenshots and/or a short training video for Level 1. Contributions welcome — drop media in `docs/assets/` and link it here.
+
 ## See also
 
 - [README — Level 1](https://github.com/AISoc-UNSW/FallGuys#level-1) for the quick-start version of this page.
